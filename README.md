@@ -1,6 +1,6 @@
-# Daily Prebuilt Electron demo
+# Daily Prebuit Feed.fm demo
 
-This demo highlights [Daily Prebuilt](https://www.daily.co/blog/prebuilt-ui/), and how it can be used to create an Electron video call app.
+This demo highlights [Daily Prebuilt](https://www.daily.co/blog/prebuilt-ui/), and how it can be used to integrate music from [Feed.fm](https://www.feed.fm) into the call participant's experience.
 
 ## Prerequisites
 
@@ -8,7 +8,7 @@ This demo highlights [Daily Prebuilt](https://www.daily.co/blog/prebuilt-ui/), a
 
 ## How the demo works
 
-This demo embeds the Daily Prebuit iframe into an Electron application.
+This demo embeds the Daily Prebuit iframe into an Electron application. It adds a custom "Play" button to the iframe, which starts playing music through Feed.fm when clicked.
 
 ## Running locally
 
@@ -19,9 +19,3 @@ This demo embeds the Daily Prebuit iframe into an Electron application.
 ## Contributing and feedback
 
 Let us know how experimenting with this demo goes! Feel free to reach out to us any time at `help@daily.co`.
-
-## What's next
-
-- Try customizing the Electron app menu with Daily call controls.
-- Try modifying the default dimensions of the application window.
-- Try customizing the Daily iframe appearance.

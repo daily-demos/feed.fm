@@ -1,7 +1,7 @@
 {
-  "name": "electron-daily-prebuilt",
+  "name": "daily-feed-fm",
   "version": "1.0.0",
-  "description": "Integrating the Daily Prebuilt into an Electron app",
+  "description": "Integrating Feed.fm into Daily Prebuilt",
   "main": "main/main.js",
   "scripts": {
     "start": "electron .",
@@ -9,7 +9,7 @@
     "lintFix": "eslint . --fix"
   },
   "author": "Liza Shulyayeva",
-  "license": "BSD-2",
+  "license": "BSD-2-Clause",
   "devDependencies": {
     "eslint": "^8.28.0",
     "eslint-config-airbnb-base": "^15.0.0",
