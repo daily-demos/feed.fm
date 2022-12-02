@@ -81,8 +81,8 @@ app.whenReady().then(() => {
   protocol.registerFileProtocol('bg', (request, callback) => {
     const { url } = request;
     // Strip the scheme from the path
-    const bgPath = request.url.substring(5, url.length);
-    callback({ bgPath });
+    const imgPath = request.url.substring(5, url.length);
+    callback({ path: imgPath });
   });
   createCallWindow();
   loadBackgroundFiles();
