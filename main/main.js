@@ -3,7 +3,7 @@ const path = require('path');
 
 let callWindow = null;
 
-// We'll define a custom "bg" scheme to fetch our background images.
+// We'll define a custom "img" scheme to fetch our background images.
 // This allows us to load local images without disabling Electron's
 // web security, which would be bad.
 // Register the scheme as privileged so that the Fetch API
