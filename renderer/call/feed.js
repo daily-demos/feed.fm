@@ -1,44 +1,40 @@
-var player = new Feed.Player("demo", "demo");
+const feedInfoEleID = 'feed-info';
 
-window.addEventListener("DOMContentLoaded", () => {
-  initFeed();
-});
+// eslint-disable-next-line no-unused-vars
+function initFeed() {
+  const player = new Feed.Player('demo', 'demo');
 
-function hideInfo(x){
-    document.getElementById("feed-info").style.opacity = 0
-  }
+  // Display all the events the player triggers
+  player.on('all', (event) => {
+    console.log(`player triggered event '${event}':`, event);
+  });
 
-  function toggleInfo(x){
-    document.getElementById("feed-info").style.transition ="opacity 1s"
-    document.getElementById("feed-info").style.opacity = 1
-    setTimeout(hideInfo, 5000);
-  }
+  player.on('play-started', onPlayStarted, onPlayStarted);
+  return player;
+}
 
-function play_started(x) {
-  
+function hideInfo() {
+  document.getElementById(feedInfoEleID).style.opacity = 0;
+}
+
+function toggleInfo() {
+  document.getElementById(feedInfoEleID).style.transition = 'opacity 1s';
+  document.getElementById(feedInfoEleID).style.opacity = 1;
+  setTimeout(hideInfo, 5000);
+}
+
+function onPlayStarted(x) {
   toggleInfo();
-  
-  let audio_file = x.audio_file;
-  let artist = audio_file.artist.name;
-  let release = audio_file.release.title;
-  let title = audio_file.track.title;
-  
-  let feedTitle = document.getElementById("title");
-  let feedArtist = document.getElementById("artist");
-  let feedRelease = document.getElementById("release");
+
+  const audioFile = x.audio_file;
+  const artist = audioFile.artist.name;
+  const release = audioFile.release.title;
+  const { title } = audioFile.track;
+
+  const feedTitle = document.getElementById('title');
+  const feedArtist = document.getElementById('artist');
+  const feedRelease = document.getElementById('release');
   feedTitle.innerHTML = title;
   feedArtist.innerHTML = artist;
   feedRelease.innerHTML = release;
-}
-
-function initFeed() {
-  // Display all the events the player triggers
-  player.on("all", function (event) {
-    console.log(
-      "player triggered event '" + event + "' with arguments:",
-      Array.prototype.splice.call(arguments, 1)
-    );
-  });
-
-  player.on("play-started", play_started, play_started);
 }

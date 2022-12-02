@@ -1,14 +1,37 @@
 let callFrame;
 
+const playUrl = new URL('./play.png', document.baseURI);
+playUrl.protocol = 'img';
+
+const pauseUrl = new URL('./pause.png', document.baseURI);
+pauseUrl.protocol = 'img';
+
+const playButton = {
+  iconPath: playUrl.href,
+  label: 'Play',
+  tooltip: 'Play Feed.fm music',
+};
+
+const pauseButton = {
+  iconPath: pauseUrl.href,
+  label: 'Pause',
+  tooltip: 'Pause Feed.fm music',
+};
+
+const customTrayButtons = {
+  toggleMusic: playButton,
+};
+
+let feedPlayer;
+let musicIsPlaying = false;
+
 window.addEventListener('DOMContentLoaded', () => {
+  feedPlayer = initFeed();
   initCall();
 });
 
 function initCall() {
   const container = document.getElementById('container');
-
-  const url = new URL('./backgroundButton.png', document.baseURI);
-  url.protocol = 'bg';
 
   callFrame = DailyIframe.createFrame(container, {
     showLeaveButton: true,
@@ -17,14 +40,7 @@ function initCall() {
       width: 'calc(100% - 1rem)',
       height: 'calc(100% - 1rem)',
     },
-    // Specify a custom button for background controls
-    customTrayButtons: {
-      backgrounds: {
-        iconPath: url.href,
-        label: 'Background',
-        tooltip: 'Set Custom Background',
-      },
-    },
+    customTrayButtons,
   })
     .on('nonfatal-error', (e) => {
       console.warn('nonfatal error:', e);
@@ -33,41 +49,20 @@ function initCall() {
       initCall();
     })
     .on('custom-button-click', (ev) => {
-      // If the event is triggered by clicking
-      // our background button, show the
-      // background selection window
-      if (ev.button_id === 'backgrounds') {
-        api.tryEnableBackgrounds();
+      if (ev.button_id === 'toggleMusic') {
+        if (!musicIsPlaying) {
+          feedPlayer.initializeAudio();
+          feedPlayer.play();
+        } else {
+          feedPlayer.pause();
+        }
+        musicIsPlaying = !musicIsPlaying;
+        const musicBtn = musicIsPlaying ? pauseButton : playButton;
+        customTrayButtons.toggleMusic = musicBtn;
+        callFrame.updateCustomTrayButtons(customTrayButtons);
       }
     });
 
   // TODO: Replace the following URL with your own room URL.
   callFrame.join({ url: 'https://{DAILY_DOMAIN}.daily.co/{DAILY_ROOM_NAME}' });
 }
-
-window.addEventListener('set-background', (ev) => {
-  const data = ev.detail;
-  let { imgPath } = data;
-  imgPath = `bg://${imgPath}`;
-
-  callFrame.updateInputSettings({
-    video: {
-      processor: {
-        type: 'background-image',
-        config: {
-          source: imgPath,
-        },
-      },
-    },
-  });
-});
-
-window.addEventListener('reset-background', () => {
-  callFrame.updateInputSettings({
-    video: {
-      processor: {
-        type: 'none',
-      },
-    },
-  });
-});

@@ -1,6 +1,8 @@
 {
     "globals": {
         "DailyIframe": true,
+        "Feed": true,
+        "initFeed": true,
         "api": true
     }
 }

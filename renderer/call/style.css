@@ -1,0 +1,29 @@
+#release {
+    text-decoration: underline;
+color: #9b9b9b;
+}
+
+#artist {
+    font-style: italic;
+font-size: 1rem;
+}
+
+#title {
+    font-size: 1.5rem;
+}
+
+#feed-info {
+    position: absolute;
+    height: 10%;
+    width: 50%;
+    background: rgba(0,0,0,.75);
+    display: block;
+    z-index: 1;
+    bottom: 10%;
+    color: #cfcfcf;
+    margin-left: 3%;
+    padding: 3%;
+    font-family: sans-serif;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
