@@ -42,7 +42,7 @@ function initCall() {
     });
 
   // TODO: Replace the following URL with your own room URL.
-  callFrame.join({ url: 'https://lizashul.daily.co/carrot' });
+  callFrame.join({ url: 'https://{DAILY_DOMAIN}.daily.co/{DAILY_ROOM_NAME}' });
 }
 
 window.addEventListener('set-background', (ev) => {
