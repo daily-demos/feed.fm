@@ -5,13 +5,43 @@
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; frame-src 'self' http://localhost:3000 https://khk-local.wss.daily.co:8000 https://*.daily.co; script-src 'self' https://unpkg.com/@daily-co/daily-js; worker-src 'self';"
+      content="style-src 'unsafe-inline'; media-src 'self' *; default-src 'self' https://feed.fm/*; connect-src 'self' https://feed.fm/* https://feed.fm/api/v2/* https://feed.fm/api/v2/client https://feed.fm/api/v2/placement https://feed.fm/api/v2/play https://feed.fm/api/v2/stations; frame-src 'self' http://localhost:3000 https://khk-local.wss.daily.co:8000 https://*.daily.co https://feed.fm/*; script-src 'self' https://unpkg.com/@daily-co/daily-js https://feed.fm/js/feed-media-audio-player.1.99.2.min.js https://feed.fm/*; worker-src 'self';"
     />
+    <script src="https://feed.fm/js/feed-media-audio-player.1.99.2.min.js"></script>
+
     <title>Daily + Electron <3</title>
   </head>
   <body>
+    <div style="
+    position: absolute;
+    height: 10%;
+    width: 50%;
+    background: rgba(0,0,0,.75);
+    display: block;
+    z-index: 1;
+    bottom: 10%;
+    color: #cfcfcf;
+    margin-left: 3%;
+    padding: 3%;
+    font-family: sans-serif;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+" id="feed-info">
+<div id="title" style="
+font-size: 1.5rem;
+"></div><div id="artist" style="
+font-style: italic;
+font-size: 1rem;
+"></div><div id="release" style="
+text-decoration: underline;
+color: #9b9b9b;
+"></div>
+  </div>
     <div id="container"></div>
+    
     <script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
     <script src="./daily.js"></script>
+    <script src="./feed.js"></script>
+
   </body>
 </html>
