@@ -1,0 +1,23 @@
+{
+  "name": "electron-daily-prebuilt",
+  "version": "1.0.0",
+  "description": "Integrating the Daily Prebuilt into an Electron app",
+  "main": "main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "lint": "eslint .",
+    "lintFix": "eslint . --fix"
+  },
+  "author": "Liza Shulyayeva",
+  "license": "BSD-2",
+  "devDependencies": {
+    "eslint": "^8.28.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0"
+  },
+  "dependencies": {
+    "electron": "^15.3.1"
+  }
+}
