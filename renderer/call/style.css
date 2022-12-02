@@ -1,11 +1,11 @@
 #release {
     text-decoration: underline;
-color: #9b9b9b;
+    color: #9b9b9b;
 }
 
 #artist {
     font-style: italic;
-font-size: 1rem;
+    font-size: 1rem;
 }
 
 #title {
